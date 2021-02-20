@@ -2,7 +2,8 @@ package com.ticketingapp.implementation;
 
 import com.ticketingapp.dto.RoleDTO;
 import com.ticketingapp.entity.Role;
-import com.ticketingapp.mapper.MapperUtil;
+import com.ticketingapp.exception.TicketingProjectException;
+import com.ticketingapp.util.MapperUtil;
 import com.ticketingapp.repository.RoleRepository;
 import com.ticketingapp.service.RoleService;
 import org.springframework.stereotype.Service;
@@ -28,8 +29,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleDTO findById(Long id) {
-        Role role = roleRepository.findById(id).get();
+    public RoleDTO findById(Long id) throws TicketingProjectException {
+        Role role = roleRepository.findById(id).orElseThrow(() -> new TicketingProjectException("Role does not exist"));
         return mapperUtil.convert(role, new RoleDTO());
     }
 }

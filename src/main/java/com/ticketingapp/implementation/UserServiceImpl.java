@@ -5,7 +5,7 @@ import com.ticketingapp.dto.TaskDTO;
 import com.ticketingapp.dto.UserDTO;
 import com.ticketingapp.entity.User;
 import com.ticketingapp.exception.TicketingProjectException;
-import com.ticketingapp.mapper.MapperUtil;
+import com.ticketingapp.util.MapperUtil;
 import com.ticketingapp.repository.UserRepository;
 import com.ticketingapp.service.ProjectService;
 import com.ticketingapp.service.TaskService;

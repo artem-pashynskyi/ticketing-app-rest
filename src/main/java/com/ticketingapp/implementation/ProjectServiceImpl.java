@@ -5,7 +5,7 @@ import com.ticketingapp.entity.Project;
 import com.ticketingapp.entity.User;
 import com.ticketingapp.enums.Status;
 import com.ticketingapp.exception.TicketingProjectException;
-import com.ticketingapp.mapper.MapperUtil;
+import com.ticketingapp.util.MapperUtil;
 import com.ticketingapp.repository.ProjectRepository;
 import com.ticketingapp.repository.UserRepository;
 import com.ticketingapp.service.ProjectService;

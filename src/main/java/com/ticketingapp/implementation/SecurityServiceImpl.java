@@ -2,7 +2,7 @@ package com.ticketingapp.implementation;
 
 import com.ticketingapp.dto.UserDTO;
 import com.ticketingapp.entity.User;
-import com.ticketingapp.mapper.MapperUtil;
+import com.ticketingapp.util.MapperUtil;
 import com.ticketingapp.service.SecurityService;
 import com.ticketingapp.service.UserService;
 import org.springframework.security.core.GrantedAuthority;

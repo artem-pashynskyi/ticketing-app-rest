@@ -7,7 +7,7 @@ import com.ticketingapp.entity.ConfirmationToken;
 import com.ticketingapp.entity.ResponseWrapper;
 import com.ticketingapp.entity.User;
 import com.ticketingapp.exception.TicketingProjectException;
-import com.ticketingapp.mapper.MapperUtil;
+import com.ticketingapp.util.MapperUtil;
 import com.ticketingapp.service.ConfirmationTokenService;
 import com.ticketingapp.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,23 +1,19 @@
 package com.ticketingapp.controller;
 
 import com.ticketingapp.annotation.DefaultExceptionMessage;
-import com.ticketingapp.dto.MailDTO;
 import com.ticketingapp.dto.UserDTO;
 import com.ticketingapp.entity.ConfirmationToken;
 import com.ticketingapp.entity.ResponseWrapper;
 import com.ticketingapp.entity.User;
 import com.ticketingapp.entity.common.AuthenticationRequest;
 import com.ticketingapp.exception.TicketingProjectException;
-import com.ticketingapp.mapper.MapperUtil;
+import com.ticketingapp.util.MapperUtil;
 import com.ticketingapp.service.ConfirmationTokenService;
 import com.ticketingapp.service.UserService;
 import com.ticketingapp.util.JWTUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;

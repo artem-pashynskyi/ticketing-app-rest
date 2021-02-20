@@ -1,4 +1,4 @@
-package com.ticketingapp.mapper;
+package com.ticketingapp.util;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
