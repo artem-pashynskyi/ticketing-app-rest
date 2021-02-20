@@ -4,13 +4,14 @@ import com.ticketingapp.dto.UserDTO;
 import com.ticketingapp.entity.User;
 import com.ticketingapp.exception.TicketingProjectException;
 
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 public interface UserService {
     List<UserDTO> listAllUsers();
-    UserDTO findByUserName(String username);
+    UserDTO findByUserName(String username) throws AccessDeniedException;
     UserDTO save(UserDTO dto) throws TicketingProjectException;
-    UserDTO update(UserDTO dto);
+    UserDTO update(UserDTO dto) throws TicketingProjectException, AccessDeniedException;
     void delete(String username) throws TicketingProjectException;
     void deleteByUserName(String username);
     List<UserDTO> listAllByRole(String role);

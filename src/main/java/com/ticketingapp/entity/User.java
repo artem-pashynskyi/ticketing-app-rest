@@ -23,7 +23,7 @@ public class User extends BaseEntity {
     private String username;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    private boolean enabled;
+    private Boolean enabled;
     private String phone;
     @Enumerated(EnumType.STRING)
     private Gender gender;

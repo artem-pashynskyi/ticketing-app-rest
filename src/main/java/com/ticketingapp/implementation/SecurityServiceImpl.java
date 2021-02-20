@@ -5,12 +5,14 @@ import com.ticketingapp.entity.User;
 import com.ticketingapp.util.MapperUtil;
 import com.ticketingapp.service.SecurityService;
 import com.ticketingapp.service.UserService;
+import lombok.SneakyThrows;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,16 +28,17 @@ public class SecurityServiceImpl implements SecurityService {
         this.mapperUtil = mapperUtil;
     }
 
+    @SneakyThrows
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         UserDTO user = userService.findByUserName(s);
-        if(user==null) throw new UsernameNotFoundException("This user does not exists");
+        if(user == null) throw new UsernameNotFoundException("This user does not exists");
         return new org.springframework.security.core.userdetails.User(user.getId().toString(),user.getPassword(),listAuthorities(user));
     }
 
     @Override
-    public User loadUser(String param) {
-        UserDTO user =  userService.findByUserName(param);
+    public User loadUser(String param) throws AccessDeniedException {
+        UserDTO user = userService.findByUserName(param);
         return mapperUtil.convert(user,new User());
     }
 

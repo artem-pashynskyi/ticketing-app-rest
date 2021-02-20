@@ -18,6 +18,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.AccessDeniedException;
+
 @RestController
 @RequestMapping("/api/v1/user")
 @Tag(name = "User Controller", description = "User API")
@@ -58,14 +60,14 @@ public class UserController {
     @DefaultExceptionMessage(defaultMessage = "Something went wrong, try again!")
     @Operation(summary = "Read by username")
     //TODO Only admin should see other profiles or current user can see his/her profile
-    public ResponseEntity<ResponseWrapper> readByUsername(@PathVariable("username") String username){
+    public ResponseEntity<ResponseWrapper> readByUsername(@PathVariable("username") String username) throws AccessDeniedException {
         return ResponseEntity.ok(new ResponseWrapper("Successfully retrieved user", userService.findByUserName(username)));
     }
 
     @PutMapping
     @DefaultExceptionMessage(defaultMessage = "Something went wrong, try again!")
     @Operation(summary = "Update user")
-    public ResponseEntity<ResponseWrapper> updateUser(@RequestBody UserDTO user) {
+    public ResponseEntity<ResponseWrapper> updateUser(@RequestBody UserDTO user) throws TicketingProjectException, AccessDeniedException {
         return ResponseEntity.ok(new ResponseWrapper("Successfully updated", userService.update(user)));
     }
 
