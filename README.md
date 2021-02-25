@@ -1,6 +1,6 @@
 # Ticketing App
 
-### Spring Boot, ORM, JPA, Hibernate + Spring Security + Spring Rest + new User email confirmation
+### Spring Boot, ORM, JPA, Hibernate + Spring Security + Spring Rest + new User email confirmation + AOP Logging + log4j2
 
 #### Project Definition
 - A ticketingproject is an application that organizes management processes.
