@@ -30,7 +30,7 @@ class ProjectControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private final String token = "eyJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJhZG1pbiIsImxhc3ROYW1lIjoiYWRtaW4iLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpZCI6MSwiZXhwIjoxNjE1MDkzOTM3LCJpYXQiOjE2MTUwNTc5MzcsInVzZXJuYW1lIjoiYWRtaW5AYWRtaW4uY29tIn0.4ItQdOdGHmpJXr5p-KovSivHeuTQTGyCp-ZoazSYAwo";
+    private final String token = "eyJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJhZG1pbiIsImxhc3ROYW1lIjoiYWRtaW4iLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpZCI6MSwiZXhwIjoxNjE1MzcxNDQzLCJpYXQiOjE2MTUzMzU0NDMsInVzZXJuYW1lIjoiYWRtaW5AYWRtaW4uY29tIn0.Ps8_JJK6q3l1uUbQgoyUPb2IflGV5HQ_LtT4CqF_KTE";
 
     private static UserDTO userDTO;
     private static ProjectDTO projectDTO;
@@ -88,7 +88,33 @@ class ProjectControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("code").exists());
+                .andExpect(MockMvcResultMatchers.jsonPath("$.data.projectCode").isNotEmpty());
+    }
+
+    @Test
+    public void givenToken_updateProject() throws Exception {
+        projectDTO.setId(2L);
+        mockMvc.perform(MockMvcRequestBuilders
+                .put("/api/v1/project")
+                .header("Authorization", token)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(toJsonString(projectDTO))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("message").value("Project has been updated successfully"));
+    }
+
+    @Test
+    public void givenToken_deleteProject() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+                .delete("/api/v1/project/" + projectDTO.getProjectCode())
+                .header("Authorization", token)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(toJsonString(projectDTO))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     protected static String toJsonString(final Object obj) {
